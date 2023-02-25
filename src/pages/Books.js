@@ -1,20 +1,25 @@
-import Book from '../components/Book'
+import Book from '../components/Book';
 
 export default function Books() {
-    return (
-        <>
-            <div>
-                <Book author="Milton" title="The lost paradise"></Book>
-            </div>
+  return (
+    <>
+      <div>
+        <Book author="Milton" title="The lost paradise" />
+      </div>
 
-            <form>
-                <label for="author">Author:</label>
-                <input id="author" name="author" type="text" />
-                <label for="title">Title:</label>
-                <input id="title" name="title" type="text" />
-                <button>Submit</button>
-            </form>
-        </>
-    );
+      <form>
+        <label htmlFor="author">
+          Author:
+          <input id="author" name="author" type="text" />
+        </label>
 
-}  
+        <label htmlFor="title">
+          Title:
+          <input id="title" name="title" type="text" />
+        </label>
+
+        <button type="submit">Submit</button>
+      </form>
+    </>
+  );
+}
