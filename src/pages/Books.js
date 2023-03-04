@@ -1,10 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 import Book from '../components/Book';
 import { addBook } from '../redux/books/booksSlice';
 
 export default function Books() {
   const dispatch = useDispatch();
   const { bookList } = useSelector((store) => store.book);
+  const [author, setAuthor] = useState('');
+  const [title, setTitle] = useState('');
 
   const myBooks = [];
   for (let i = 0; i < bookList.length; i += 1) {
@@ -19,7 +22,6 @@ export default function Books() {
 
   return (
     <>
-
       <div>
         {myBooks}
       </div>
@@ -27,26 +29,38 @@ export default function Books() {
       <form>
         <label htmlFor="author">
           Author:
-          <input id="author" name="author" type="text" />
+          <input
+            id="author"
+            name="author"
+            type="text"
+            onChange={(e) => {
+              setAuthor(e.target.value);
+            }}
+          />
         </label>
 
         <label htmlFor="title">
           Title:
-          <input id="title" name="title" type="text" />
+          <input
+            id="title"
+            name="title"
+            type="text"
+            onChange={(e) => {
+              setTitle(e.target.value);
+            }}
+          />
         </label>
 
-        <button type="submit">Submit</button>
+        <button
+          type="submit"
+          onClick={(e) => {
+            e.preventDefault();
+            dispatch(addBook({ author, title }));
+          }}
+        >
+          Submit
+        </button>
       </form>
-      <button
-        type="button"
-        id="test_button"
-        onClick={() => {
-          dispatch(addBook({ id: 1, author: 'autor-1', title: 'title-1' }));
-        }}
-      >
-        {' '}
-        Test Add reducer
-      </button>
     </>
   );
 }
