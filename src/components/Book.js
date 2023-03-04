@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { removeBook } from '../redux/books/booksSlice';
 
 export default function Book(props) {
-  const { author, title } = props;
+  const { author, title, id } = props;
+  const dispatch = useDispatch();
   return (
     <div>
       <div>
@@ -12,7 +15,14 @@ export default function Book(props) {
         Title:
         {title}
       </div>
-      <button type="submit"> Remove </button>
+      <button
+        type="submit"
+        onClick={() => {
+          dispatch(removeBook({ id }));
+        }}
+      >
+        Remove
+      </button>
     </div>
   );
 }
@@ -31,4 +41,12 @@ Book.propTypes = {
 
 Book.defaultProps = {
   title: 'none',
+};
+
+Book.propTypes = {
+  id: PropTypes.number,
+};
+
+Book.defaultProps = {
+  id: 0,
 };
