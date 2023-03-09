@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { removeBook } from '../redux/books/booksSlice';
+import { removeBook, deleteItemAxios } from '../redux/books/booksSlice';
 
 export default function Book(props) {
   const { author, title, id } = props;
@@ -19,6 +19,7 @@ export default function Book(props) {
         type="submit"
         onClick={() => {
           dispatch(removeBook({ id }));
+          dispatch(deleteItemAxios({ id }));
         }}
       >
         Remove
@@ -44,9 +45,9 @@ Book.defaultProps = {
 };
 
 Book.propTypes = {
-  id: PropTypes.number,
+  id: PropTypes.string,
 };
 
 Book.defaultProps = {
-  id: 0,
+  id: '',
 };

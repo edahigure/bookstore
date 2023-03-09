@@ -1,13 +1,24 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+/* eslint-disable import/no-extraneous-dependencies */
+import { v4 as uuid } from 'uuid';
 import Book from '../components/Book';
-import { addBook } from '../redux/books/booksSlice';
+import { addBook, fetchBooks, addItemAxios } from '../redux/books/booksSlice';
 
 export default function Books() {
   const dispatch = useDispatch();
-  const { bookList } = useSelector((store) => store.book);
+  const {
+    bookList, status,
+  } = useSelector((store) => store.book);
+
   const [author, setAuthor] = useState('');
   const [title, setTitle] = useState('');
+
+  useEffect(() => {
+    if (status === 'idle') {
+      dispatch(fetchBooks());
+    }
+  }, [status, dispatch]);
 
   const myBooks = [];
   for (let i = 0; i < bookList.length; i += 1) {
@@ -55,7 +66,14 @@ export default function Books() {
           type="submit"
           onClick={(e) => {
             e.preventDefault();
-            dispatch(addBook({ author, title }));
+            const id = uuid();
+            dispatch(addBook({ id, author, title }));
+            dispatch(addItemAxios({
+              id,
+              author,
+              title,
+              category: 'category',
+            }));
           }}
         >
           Submit
