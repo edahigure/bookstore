@@ -6,7 +6,6 @@ const url = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstor
 
 export const fetchBooks = createAsyncThunk('books/fetchBooks', async () => {
   try {
-    console.log('fetchBooks');
     const response = await axios.get(`${url}`);
     return response.data;
   } catch (err) {
@@ -32,7 +31,6 @@ export const deleteItemAxios = createAsyncThunk('books/deleteItemAxios', async (
   const { id } = payload;
   try {
     const resp = await axios.delete(`${url}/${id}`);
-    resp.then((res) => console.log(res.text()));
     return resp.data;
   } catch (error) {
     return error.message;
@@ -57,7 +55,6 @@ const bookSlice = createSlice({
         bookList: [...state.bookList,
           { ...action.payload }],
       };
-      console.log(newState);
       return newState;
     },
     removeBook: (state, action) => {
@@ -75,7 +72,6 @@ const bookSlice = createSlice({
         state.status = 'succeeded';
         const newBookList = [];
         Object.keys(action.payload).forEach((id) => {
-          console.log(id);
           const newBook = {
             id,
             author: action.payload[id][0].author,
