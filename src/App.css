@@ -224,20 +224,6 @@ button {
   background-color: #fff;
 }
 
-button:hover,
-button:focus {
-  background: #fff;
-}
-
-button:focus {
-  outline: 1px solid #fff;
-  outline-offset: -4px;
-}
-
-button:active {
-  transform: scale(0.99);
-}
-
 .Rectangle-3 {
   width: 5.625%;
   height: 5.62%;
@@ -420,4 +406,18 @@ button:active {
   padding: 0.801% 1.188% 0.886% 1.375%;
   border-radius: 3px;
   background-color: var(--azure);
+}
+
+.add-book {
+  width: 8.938rem;
+  height: 1.125rem;
+  font-family: RobotoSlab, sans-serif;
+  font-size: 0.813rem;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.5px;
+  text-align: center;
+  color: #fff;
 }

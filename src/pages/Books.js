@@ -103,7 +103,10 @@ export default function Books() {
               }));
             }}
           >
-            ADD BOOK
+            <div className="add-book">
+              ADD BOOK
+            </div>
+
           </button>
         </div>
 
