@@ -13,6 +13,7 @@ export default function Books() {
 
   const [author, setAuthor] = useState('');
   const [title, setTitle] = useState('');
+  const [category, setCategory] = useState('');
 
   useEffect(() => {
     if (status === 'idle') {
@@ -25,6 +26,7 @@ export default function Books() {
     const str = `book${i}`;
     myBooks.push(<Book
       key={str}
+      category={bookList[i].category}
       author={bookList[i].author}
       title={bookList[i].title}
       id={bookList[i].id}
@@ -36,48 +38,78 @@ export default function Books() {
       <div>
         {myBooks}
       </div>
+      <div className="Line" />
+      <form className="form-panel">
+        <div className="add-new">
+          ADD NEW BOOK
+        </div>
+        <div className="container-5">
+          <label htmlFor="author">
+            <input
+              id="author"
+              name="author"
+              type="text"
+              placeholder="Book author"
+              className="entry"
+              size="150"
+              onChange={(e) => {
+                setAuthor(e.target.value);
+              }}
+            />
+          </label>
 
-      <form>
-        <label htmlFor="author">
-          Author:
-          <input
-            id="author"
-            name="author"
-            type="text"
-            onChange={(e) => {
-              setAuthor(e.target.value);
+          <label htmlFor="title">
+            <input
+              id="title"
+              name="title"
+              type="text"
+              placeholder="Book title"
+              className="entry"
+              size="100"
+              onChange={(e) => {
+                setTitle(e.target.value);
+              }}
+            />
+          </label>
+
+          <label htmlFor="category">
+            <input
+              id="category"
+              name="category"
+              type="text"
+              placeholder="Book category"
+              className="entry"
+              size="100"
+              onChange={(e) => {
+                setCategory(e.target.value);
+              }}
+            />
+          </label>
+
+          <button
+            type="submit"
+            className="Rectangle-4"
+            onClick={(e) => {
+              e.preventDefault();
+              const id = uuid();
+              dispatch(addBook({
+                id, author, title, category,
+              }));
+              dispatch(addItemAxios({
+                id,
+                author,
+                title,
+                category,
+              }));
             }}
-          />
-        </label>
+          >
+            <div className="add-book">
+              ADD BOOK
+            </div>
 
-        <label htmlFor="title">
-          Title:
-          <input
-            id="title"
-            name="title"
-            type="text"
-            onChange={(e) => {
-              setTitle(e.target.value);
-            }}
-          />
-        </label>
+          </button>
+        </div>
 
-        <button
-          type="submit"
-          onClick={(e) => {
-            e.preventDefault();
-            const id = uuid();
-            dispatch(addBook({ id, author, title }));
-            dispatch(addItemAxios({
-              id,
-              author,
-              title,
-              category: 'category',
-            }));
-          }}
-        >
-          Submit
-        </button>
       </form>
     </>
   );
