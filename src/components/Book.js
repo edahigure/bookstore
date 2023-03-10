@@ -32,6 +32,7 @@ export default function Book(props) {
           <li className="vl">Edit</li>
         </ul>
       </div>
+
       <div className="container-2">
         <div className="circle-wrapper">
           <div className="circle" />
@@ -41,8 +42,8 @@ export default function Book(props) {
           <div className="Percent-Complete">64%</div>
           <div className="Completed">Completed</div>
         </div>
-
       </div>
+
       <div className="container-4">
         <span className="Current-Chapter Text-Style-7">
           Current Chapter
