@@ -1,5 +1,7 @@
 import './App.css';
-import { NavLink, Route, Routes } from 'react-router-dom';
+import {
+  NavLink, Route, Routes,
+} from 'react-router-dom';
 import Books from './pages/Books';
 import Categories from './pages/Categories';
 
@@ -19,12 +21,12 @@ function App() {
               <li><NavLink to="/categories" className="li-item li-item-2">CATEGORIES</NavLink></li>
             </ul>
           </nav>
-
           <Routes>
             <Route index element={<Books />} />
             <Route path="books" element={<Books />} />
             <Route path="categories" element={<Categories />} />
           </Routes>
+
         </div>
       </div>
     </>
